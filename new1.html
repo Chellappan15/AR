@@ -919,22 +919,26 @@
         document.getElementById("cartCountCircle").textContent = cartCount;
 
         let neededFoods = [];
-        function addThisFood(str){
-            neededFoods.push(Number(str[6]));
-            console.log(neededFoods);
-        }
-        function addCart() {
-            addThisFood(presentLocation);
-            if (cartCount <= 10) {
-                cartCount += 1;
-                document.getElementById("cartCountCircle").textContent = cartCount;
-            }
-        }
-
         function addThisFood(str) {
             neededFoods.push(Number(str[6])-1);
             localStorage.setItem('neededFoods', JSON.stringify(neededFoods));
             console.log(neededFoods);
+        }
+
+        function addCart() {
+            if(presentLocation === '')
+            {
+                alert("Please Select Which Food You Want.");
+            }
+            else
+            {
+                addThisFood(presentLocation);
+                if (cartCount <= 10)
+                {
+                cartCount += 1;
+                document.getElementById("cartCountCircle").textContent = cartCount;
+                }   
+            }
         }
 
         function removeThisFood(){
